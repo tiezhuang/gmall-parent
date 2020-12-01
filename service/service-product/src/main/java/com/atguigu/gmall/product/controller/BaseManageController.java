@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Api(tags = "商品基础属性接口")
 @RestController
-@CrossOrigin
+//@CrossOrigin
 @RequestMapping("admin/product")
 public class BaseManageController {
     @Autowired
@@ -77,4 +77,5 @@ public class BaseManageController {
     public Result<List<BaseAttrValue>> getAttrValueList(@PathVariable("attrId") Long attrId){
         return Result.ok(manageService.getAttrInfo(attrId).getAttrValueList());
     }
+
 }

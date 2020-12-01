@@ -4,6 +4,8 @@ import com.atguigu.gmall.model.product.*;
 import com.atguigu.gmall.product.mapper.*;
 import com.atguigu.gmall.product.service.ManageService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,10 @@ public class ManageServiceImpl implements ManageService {
    private BaseAttrInfoMapper baseAttrInfoMapper;
    @Autowired
    private BaseAttrValueMapper baseAttrValueMapper;
+   @Autowired
+   private SpuInfoMapper spuInfoMapper;
+    @Autowired
+    private BaseSaleAttrMapper baseSaleAttrMapper;
     @Override
     public List<BaseCategory1> getCategory1() {
         return baseCategory1Mapper.selectList(null);
@@ -83,6 +89,12 @@ public class ManageServiceImpl implements ManageService {
         return baseAttrInfo;
     }
 
+    @Override
+    public IPage<SpuInfo> getSpuInfoPage(Page<SpuInfo> pagers, SpuInfo spuInfo) {
+        QueryWrapper<SpuInfo> queryWrapper = new QueryWrapper<SpuInfo>().eq("category3_id", spuInfo.getCategory3Id()).orderByDesc("id");
+        return spuInfoMapper.selectPage(pagers,queryWrapper);
+    }
+
     /**
      * 根据属性Id获取属性值集合
      * @param attrId
@@ -90,5 +102,9 @@ public class ManageServiceImpl implements ManageService {
      */
     public List<BaseAttrValue> getAttrValueList(Long attrId){
         return baseAttrValueMapper.selectList(new QueryWrapper<BaseAttrValue>().eq("attr_id",attrId));
+    }
+    @Override
+    public List<BaseSaleAttr> baseSaleAttrList() {
+        return baseSaleAttrMapper.selectList(null);
     }
 }
