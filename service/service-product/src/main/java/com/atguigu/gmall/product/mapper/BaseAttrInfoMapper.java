@@ -2,8 +2,8 @@ package com.atguigu.gmall.product.mapper;
 
 import com.atguigu.gmall.model.product.BaseAttrInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import feign.Param;
-import org.mapstruct.Mapper;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 

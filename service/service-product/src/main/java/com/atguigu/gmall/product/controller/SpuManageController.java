@@ -5,10 +5,7 @@ import com.atguigu.gmall.product.service.ManageService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author 罗铁壮
@@ -43,4 +40,16 @@ public class SpuManageController {
     public Result baseSaleAttrList(){
         return Result.ok(manageService.baseSaleAttrList());
     }
+
+    /**
+     * 保存spu信息
+     * @param spuInfo
+     * @return
+     */
+    @PostMapping("saveSpuInfo")
+    public Result saveSpuInfo(@RequestBody SpuInfo spuInfo){
+        manageService.saveSpuInfo(spuInfo);
+        return Result.ok();
+    }
+
 }
