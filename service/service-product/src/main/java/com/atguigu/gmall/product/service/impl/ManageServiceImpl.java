@@ -235,4 +235,9 @@ public class ManageServiceImpl implements ManageService {
         SkuInfo skuInfo = skuInfoMapper.selectById(skuId);
         return skuInfo.getPrice();
     }
+
+    @Override
+    public List<SpuSaleAttr> getSpuSaleAttrListBySkuId(long skuId, long spuId) {
+        return spuSaleAttrMapper.selectSpuSaleAttrListCheckBySku(skuId,spuId);
+    }
 }
