@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -47,6 +48,8 @@ public class ManageServiceImpl implements ManageService {
     private SkuImageMapper skuImageMapper;
     @Autowired
     private SkuSaleAttrValueMapper skuSaleAttrValueMapper;
+    @Autowired
+    private BaseCategoryViewMapper baseCategoryViewMapper;
     @Override
     public List<BaseCategory1> getCategory1() {
         return baseCategory1Mapper.selectList(null);
@@ -212,5 +215,24 @@ public class ManageServiceImpl implements ManageService {
         skuInfo.setId(skuId);
         skuInfo.setIsSale(0);
         skuInfoMapper.updateById(skuInfo);
+    }
+
+    @Override
+    public SkuInfo getSkuInfobyId(long skuId) {
+        SkuInfo skuInfo = skuInfoMapper.selectById(skuId);
+        List<SkuImage> sku_id = skuImageMapper.selectList(new QueryWrapper<SkuImage>().eq("sku_id", skuId));
+        skuInfo.setSkuImageList(sku_id);
+        return skuInfo;
+    }
+
+    @Override
+    public BaseCategoryView getBaseCategoryView(long category3Id) {
+        return baseCategoryViewMapper.selectById(category3Id);
+    }
+
+    @Override
+    public BigDecimal getSkuPrice(long skuId) {
+        SkuInfo skuInfo = skuInfoMapper.selectById(skuId);
+        return skuInfo.getPrice();
     }
 }
