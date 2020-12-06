@@ -12,5 +12,5 @@ public interface ItemService {
      * @param skuId
      * @return
      */
-    Map<String,Object> getskuInfoByskuId(Long skuId);
+    Map<String,Object> getBySkuId(Long skuId);
 }

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 罗铁壮
@@ -167,4 +168,10 @@ public interface ManageService {
      * @return
      */
     List<SpuSaleAttr> getSpuSaleAttrListBySkuId(long skuId, long spuId);
+    /**
+     * 根据spuid获取以map存储的以属性值为Key,skuId为value的map
+     * @param spuId
+     * @return
+     */
+    Map getSkuValueIdsMap(long spuId);
 }

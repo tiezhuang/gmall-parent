@@ -16,11 +16,11 @@
     <description>service-item</description>
 
     <dependencies>
-<!--        <dependency>
+        <dependency>
             <groupId>com.atguigu.gmall</groupId>
             <artifactId>service-product-client</artifactId>
             <version>1.0</version>
-        </dependency>-->
+        </dependency>
     </dependencies>
 
     <build>

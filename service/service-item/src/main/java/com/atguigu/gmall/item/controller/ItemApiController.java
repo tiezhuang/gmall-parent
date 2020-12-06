@@ -4,6 +4,7 @@ import com.atguigu.gmall.common.result.Result;
 import com.atguigu.gmall.item.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +25,7 @@ public class ItemApiController {
      * @return
      */
     @GetMapping("{skuId}")
-    public Result getItem(long skuId){
-        return Result.ok(itemService.getskuInfoByskuId(skuId));
+    public Result getItem(@PathVariable long skuId){
+        return Result.ok(itemService.getBySkuId(skuId));
     }
 }

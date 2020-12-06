@@ -12,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 罗铁壮
@@ -239,5 +241,18 @@ public class ManageServiceImpl implements ManageService {
     @Override
     public List<SpuSaleAttr> getSpuSaleAttrListBySkuId(long skuId, long spuId) {
         return spuSaleAttrMapper.selectSpuSaleAttrListCheckBySku(skuId,spuId);
+    }
+
+    @Override
+    public Map getSkuValueIdsMap(long spuId) {
+        List<Map> mapList = skuSaleAttrValueMapper.selectSaleAttrValuesBySpu(spuId);
+        HashMap<Object, Object> map = new HashMap<>();
+        if (mapList != null && mapList.size()>0){
+            for (Map map1 : mapList) {
+                map.put(map1.get("value_ids"),map1.get("sku_id"));
+            }
+            return map;
+        }
+        return null;
     }
 }
