@@ -1,5 +1,6 @@
 package com.atguigu.gmall.product.api;
 
+import com.atguigu.gmall.common.result.Result;
 import com.atguigu.gmall.model.product.BaseCategoryView;
 import com.atguigu.gmall.model.product.SkuInfo;
 import com.atguigu.gmall.model.product.SpuSaleAttr;
@@ -77,5 +78,14 @@ public class ProductApiController {
     @GetMapping("inner/getSkuValueIdsMap/{spuId}")
     public Map getSkuValueIdsMap(@PathVariable long spuId){
         return manageService.getSkuValueIdsMap(spuId);
+    }
+
+    /**
+     * 获取全部分类信息
+     * @return
+     */
+    @GetMapping("getBaseCategoryList")
+    public Result getBaseCategoryList(){
+        return Result.ok(manageService.getBaseCategoryList());
     }
 }
