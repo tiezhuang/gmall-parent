@@ -1,9 +1,7 @@
 package com.atguigu.gmall.product.api;
 
 import com.atguigu.gmall.common.result.Result;
-import com.atguigu.gmall.model.product.BaseCategoryView;
-import com.atguigu.gmall.model.product.SkuInfo;
-import com.atguigu.gmall.model.product.SpuSaleAttr;
+import com.atguigu.gmall.model.product.*;
 import com.atguigu.gmall.product.service.ManageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +25,7 @@ public class ProductApiController {
 
     /**
      * 根据skuId获取skuInfo的基本信息和图片集合
+     *
      * @param skuId
      * @return
      */
@@ -60,32 +59,56 @@ public class ProductApiController {
 
     /**
      * 根据skuId和spuId获取spuSaleAttr集合，里面是商品的销售属性和销售值
+     *
      * @param skuId
      * @param spuId
      * @return
      */
     @GetMapping("inner/getSpuSaleAttrListCheckBySku/{skuId}/{spuId}")
     public List<SpuSaleAttr> getSpuSaleAttrListBySkuId(@PathVariable long skuId,
-                                                       @PathVariable long spuId){
-        return manageService.getSpuSaleAttrListBySkuId(skuId,spuId);
+                                                       @PathVariable long spuId) {
+        return manageService.getSpuSaleAttrListBySkuId(skuId, spuId);
     }
 
     /**
      * 根据spuid获取以map存储的以属性值为Key,skuId为value的map
+     *
      * @param spuId
      * @return
      */
     @GetMapping("inner/getSkuValueIdsMap/{spuId}")
-    public Map getSkuValueIdsMap(@PathVariable long spuId){
+    public Map getSkuValueIdsMap(@PathVariable long spuId) {
         return manageService.getSkuValueIdsMap(spuId);
     }
 
     /**
      * 获取全部分类信息
+     *
      * @return
      */
     @GetMapping("getBaseCategoryList")
-    public Result getBaseCategoryList(){
+    public Result getBaseCategoryList() {
         return Result.ok(manageService.getBaseCategoryList());
+    }
+
+    /**
+     * 根据品牌ID 获取品牌的信息
+     *
+     * @param tmId
+     * @return
+     */
+    @GetMapping("inner/getTrademark/{tmId}")
+    public BaseTrademark getTrademark(@PathVariable long tmId) {
+        return manageService.getTrademarkByImid(tmId);
+    }
+
+    /**
+     * 根据skuId获取该sku 的基本属性和属性值
+     * @param skuId
+     * @return
+     */
+    @GetMapping("inner/getAttrList/{skuId}")
+    public List<BaseAttrInfo> getAttrList(@PathVariable long skuId) {
+        return manageService.getAttrList(skuId);
     }
 }
