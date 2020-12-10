@@ -13,7 +13,6 @@ public class ItemDegradeFeignClient implements ItemFeignClient {
 
     @Override
     public Result getItem(Long skuId) {
-        System.out.println("++++++++++++"+"*************");
         return Result.fail();
     }
 }

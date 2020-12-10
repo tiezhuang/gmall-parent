@@ -48,6 +48,7 @@ public class ListApiController {
 
     /**
      * 下架商品
+     *
      * @param skuId
      * @return
      */
@@ -59,6 +60,7 @@ public class ListApiController {
 
     /**
      * 更新热点数据
+     *
      * @param skuId
      * @return
      */
