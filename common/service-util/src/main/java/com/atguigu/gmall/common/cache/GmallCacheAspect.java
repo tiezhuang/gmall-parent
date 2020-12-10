@@ -72,6 +72,7 @@ public class GmallCacheAspect {
                         //执行方法体joinPoint。proceed();如果在方法上能够找到注解，表示要执行方法体，ruturn getSkuInfoDB(skuId)
                         //skuInfo = getSkuInfoDB(skuId);
                         object = joinPoint.proceed(joinPoint.getArgs());
+
                         //防止缓存穿透
                         if (object == null){
                             Object object1 = new Object();
